@@ -1,0 +1,61 @@
+<%- include('header') -%>
+<main>
+    <h2>Add New Schedule</h2>
+     <div class="content-contact-details">
+        
+        <form  action="/schedules" method="post">
+          <label for="user_id">User Id *</label><br />
+         
+            <select name="user_id" id="user_id">
+                <% let index = 0 %>
+                <% users.forEach((user)=>{%>
+                <option value="<%= index %>"><%=user.firstname%> <%=user.lastname%></option>
+                <% index ++ %> 
+                <% }) %> 
+            </select><br />
+          
+          <label for="day">day</label><br />
+          <select name="day" id="day">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+          </select><br />
+          <label for="start_at">day</label><br />
+          <select name="start_at" id="start_at">
+            <option value="8AM">8AM</option>
+            <option value="9AM">9AM</option>
+            <option value="10AM">10AM</option>
+            <option value="11AM">11AM</option>
+            <option value="12PM">12PM</option>
+            <option value="1PM">1PM</option>
+            <option value="2PM">2PM</option>
+            <option value="3PM">3PM</option>
+            <option value="4PM">4PM</option>
+            <option value="5PM">5PM</option>
+          </select><br />
+          <label for="end_at">day</label><br />
+          <select name="end_at" id="end_at">
+            <option value="8AM">8AM</option>
+            <option value="9AM">9AM</option>
+            <option value="10AM">10AM</option>
+            <option value="11AM">11AM</option>
+            <option value="12PM">12PM</option>
+            <option value="1PM">1PM</option>
+            <option value="2PM">2PM</option>
+            <option value="3PM">3PM</option>
+            <option value="4PM">4PM</option>
+            <option value="5PM">5PM</option>
+          </select><br />
+          <div id="btn-div" class="flex">
+            <button type="submit" id="submitBtn" class="form-btn">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+  </main>
+<%- include('footer') -%>

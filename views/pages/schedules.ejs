@@ -1,0 +1,27 @@
+<%- include('header') -%>
+<main>
+    <% if (schedules.length != 0) { %>
+    <h2>Schedule List</h2>
+    <table>
+        <tr>
+          <th>User Id</th>
+          <th>Day</th>
+          <th>Start </th>
+          <th>End </th>
+        </tr>
+        <% schedules.forEach((schedule)=>{%>
+        <tr>
+          <td><%= schedule.user_id %></td>
+          <td><%= schedule.day %></td>
+          <td><%= schedule.start_at %></td>
+          <td><%= schedule.end_at %></td>
+        </tr>
+        <% }) %> 
+      </table>
+      <% } else { %>
+      <br><h2>There is no booking for this user</h2>
+      <% } %>
+   
+  </main>
+<%- include('footer') -%>
+

@@ -1,0 +1,51 @@
+<%- include('header') -%>
+<main>
+    <h2>Add New User</h2>
+     <div class="content-contact-details">
+        
+        <form  action="/users" method="post">
+          <label for="firstname">Firstname *</label><br />
+          <input
+            type="text"
+            id="firstname"
+            class="text-box-style"
+            name="firstname"
+            value=""
+            required
+          /><br />
+          <label for="lastname">Lastname *</label><br />
+          <input
+            type="text"
+            id="lastname"
+            class="text-box-style"
+            name="lastname"
+            value=""
+            required
+          /><br />
+          <label for="email">Email *</label><br />
+          <input
+            type="text"
+            id="email"
+            class="text-box-style"
+            name="email"
+            value=""
+            required
+          /><br />
+          <label for="password">Password *</label><br />
+          <input
+            type="text"
+            id="password"
+            class="text-box-style"
+            name="password"
+            value=""
+            required
+          /><br />
+          <div id="btn-div" class="flex">
+            <button type="submit" id="submitBtn" class="form-btn">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+  </main>
+<%- include('footer') -%>

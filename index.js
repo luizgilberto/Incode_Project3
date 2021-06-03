@@ -8,11 +8,18 @@ app.use(express.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  res.send('Welcome to our schedule website')
+  res.render('./pages/', {
+    documentTitle: 'Welcome to our schedule website',
+    users: data.users,    
+  }
+  )
 })
 
 app.get('/users', (req, res) => {
-  res.send(data.users)
+  res.render('pages/users',{
+    documentTitle: 'Users from our schedule website',
+    users: data.users
+  })
 })
 
 app.get('/users/:id', (req, res) => {
@@ -24,11 +31,17 @@ app.get('/users/:id', (req, res) => {
   res.send("Not found, please check your user number")
   
   else
-    res.send(data.users[object])
+  res.render('pages/user', {  
+    user: data.users[object],
+    documentTitle: 'Users from our schedule website',
+})
 })
 
 app.get('/schedules', (req, res) => {
-  res.send(data.schedules)
+  res.render('pages/schedules',{
+    schedules: data.schedules,
+    documentTitle: 'Schedules from our schedule website',
+})
 })
 
 app.get('/users/:id/schedules', (req, res) => {
@@ -44,10 +57,15 @@ app.get('/users/:id/schedules', (req, res) => {
       schedules.push(currentSchedule)
     }
   }
-  if (schedules == "") 
-    res.send('There is no booking for this user')
-  else  
-    res.send(schedules) 
+  // This is in the ejs file now:
+  // if (schedules == "") 
+  //   res.send('There is no booking for this user')
+  // else  
+
+  res.render('pages/schedules',{
+    schedules: schedules,
+    documentTitle: 'Schedule for a specific user from our schedule website',
+})
 })
 
 // POST routes
@@ -69,7 +87,19 @@ app.post('/users', function (req, res) {
   res.send(req.body)
 })
 
-// app.delete()
+app.get('/schedules/new', (req, res) => {
+  res.render('pages/newSchedule',{
+    users: data.users,
+    documentTitle: 'Create a new Schedule from our schedule website',
+})
+})
+
+app.get('/users/new', (req, res) => {
+  res.render('pages/newUser',{
+    documentTitle: 'Create a new User from our schedule website',
+})
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
