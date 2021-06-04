@@ -2,17 +2,19 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT  || 3000
 const data = require('./data.js')
+const bodyParser = require('body-parser')
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
+app.use(bodyParser.urlencoded({ extended: true }))
+
 
 app.get('/', (req, res) => {
   res.render('./pages/', {
     documentTitle: 'Welcome to our schedule website',
     users: data.users,    
-  }
-  )
+  })
 })
 
 app.get('/users', (req, res) => {
@@ -22,20 +24,6 @@ app.get('/users', (req, res) => {
   })
 })
 
-app.get('/users/:id', (req, res) => {
-  const object = Number(req.params.id)
-  // console.log (req.params.id)
-  // console.log (object)
-  
-  if (object > data.users.length-1)   //Can lead to errors after some deleted entry?  
-  res.send("Not found, please check your user number")
-  
-  else
-  res.render('pages/user', {  
-    user: data.users[object],
-    documentTitle: 'Users from our schedule website',
-})
-})
 
 app.get('/schedules', (req, res) => {
   res.render('pages/schedules',{
@@ -82,9 +70,12 @@ const saltRounds = 10
 
 app.post('/users', function (req, res) {
   const hash = bcrypt.hashSync(req.body.password, saltRounds) // create the hash password
+  const user = req.body
   req.body.password = hash // changes the password in the request to it's hashed version
   data.users.push(req.body) // Inputs into the database
   res.send(req.body)
+  
+  
 })
 
 app.get('/schedules/new', (req, res) => {
@@ -98,6 +89,21 @@ app.get('/users/new', (req, res) => {
   res.render('pages/newUser',{
     documentTitle: 'Create a new User from our schedule website',
 })
+})
+
+app.get('/users/:id', (req, res) => {
+  const object = Number(req.params.id)
+  // console.log (req.params.id)
+  // console.log (object)
+  
+  if (object > data.users.length-1)   //Can lead to errors after some deleted entry?  
+  res.send("Not found, please check your user number")
+  
+  else
+  res.render('pages/user', {  
+    user: data.users[object],
+    documentTitle: 'Users from our schedule website',
+  })
 })
 
 
