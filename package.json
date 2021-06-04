@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "create-database": "set PGPASSWORD=Senha123&& psql -U postgres -h localhost -d mrcoffee -f sql/create_database.sql",
     "create-schedules": "set PGPASSWORD=Senha123&& psql -U postgres -h localhost -d mrcoffee -f sql/create_schedules.sql"
-
   },
   "author": "",
   "license": "ISC",
