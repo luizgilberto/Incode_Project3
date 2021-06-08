@@ -10,7 +10,7 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 //PostgreSQL Database
-const db = require('./database.js')
+const db = require('./database')
 
 app.get('/', (req, res) => {
   res.render('./pages/', {
@@ -20,10 +20,17 @@ app.get('/', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-  res.render('pages/users',{
-    documentTitle: 'Users from our schedule website',
-    users: data.users
-  })
+  db.any('SELECT * FROM users;')
+    .then((data) => {
+        res.render('pages/users', {
+            users: data,
+            documentTitle: 'Users from our schedule website',
+
+        })
+    })
+    .catch((err) => {
+        res.send(err)  
+    })
 })
 
 

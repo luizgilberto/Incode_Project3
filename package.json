@@ -8,7 +8,9 @@
     "dev": "nodemon index.js",
     "create-database": "set PGPASSWORD=Senha123&& psql -U postgres -h localhost -f sql/create_database.sql",
     "create-schedules": "set PGPASSWORD=Senha123&& psql -U postgres -h localhost -d mcoffee -f sql/create_schedules.sql",
-    "seed-schedules": "set PGPASSWORD=Senha123&& psql -U postgres -h localhost -d mcoffee -f sql/seed_schedules.sql"
+    "seed-schedules": "set PGPASSWORD=Senha123&& psql -U postgres -h localhost -d mcoffee -f sql/seed_schedules.sql",
+    "seed-users": "set PGPASSWORD=Senha123&& psql -U postgres -h localhost -d mcoffee -f sql/seed_users.sql"
+
   },
   "author": "Luiz Lauffer",
   "license": "ISC",
